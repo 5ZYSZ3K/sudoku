@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-export default function Cell({coords, inputHandler, startingValue}){
+export default function Cell({coords, inputHandler, startingValue, color, readonly}){
     const [value, setValue] = useState(startingValue);
     const handler = (data) => {
         const num = parseInt(data.target.value);
@@ -14,8 +14,9 @@ export default function Cell({coords, inputHandler, startingValue}){
         }
         else setValue("");
     }
-    const JSX = startingValue!==""?
-    <input type="text" value={value} className="cell" onChange={handler} readOnly /> : 
-    <input type="text" value={value} className="cell" onChange={handler} />;
+    console.log(color)
+    const JSX = readonly ?
+    <input type="text" value={value} className="cell" onChange={handler} readOnly style={{background: color}} />
+    :<input type="text" value={value} className="cell" onChange={handler} style={{background: color}} />
     return JSX;
 }
