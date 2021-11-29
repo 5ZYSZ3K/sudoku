@@ -12,9 +12,11 @@ export default function Cell({coords, inputHandler, startingValue, color, readon
                 inputHandler(num, coords);
             }
         }
-        else setValue("");
+        else {
+            setValue("");
+            inputHandler("", coords)
+        }
     }
-    console.log(color)
     const JSX = readonly ?
     <input type="text" value={value} className="cell" onChange={handler} readOnly style={{background: color}} />
     :<input type="text" value={value} className="cell" onChange={handler} style={{background: color}} />
